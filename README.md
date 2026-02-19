@@ -22,6 +22,7 @@ A browser-based SQL playground powered by [DuckDB-WASM](https://github.com/duckd
 - **Powered by Claude** — Uses the Anthropic SDK to stream responses with tool use
 - **Thinking steps** — Collapsible thinking block shows the agent's reasoning and intermediate SQL queries
 - **Inline query results** — SQL results displayed inline within the conversation
+- **Requires Anthropic API key** — Enter your API key in the app to use agent mode; the key is stored in memory only and never persisted to disk or sent to any server besides the Anthropic API
 
 ## Getting Started
 
@@ -31,16 +32,6 @@ npm run dev
 ```
 
 Open http://localhost:5173 to use the playground.
-
-### Environment Variables
-
-Copy `.env.example` to `.env` and add your Anthropic API key:
-
-```
-CLAUDE_API_KEY=sk-ant-...
-```
-
-The API key is required for the AI agent feature. The SQL playground works without it.
 
 ## Build
 
