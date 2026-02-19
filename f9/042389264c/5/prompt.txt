@@ -1,0 +1,5 @@
+use claude agent sdk v1 instead: https://platform.claude.com/docs/en/agent-sdk/typescript and use bun as server runtime
+
+---
+
+[Request interrupted by user for tool use]
