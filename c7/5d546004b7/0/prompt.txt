@@ -1,0 +1,21 @@
+make thinking steps collapsible, default: collapsed, but it should show currently thinking text in the title of collapse
+
+---
+
+make all thinking steps into one collapse, default state: collapsed, but it should show currently thinking text in the title of collapse
+
+---
+
+sql query and result along the thinking steps should also under the thinkingblock
+
+---
+
+commit it
+
+---
+
+refine readme
+
+---
+
+commit it
