@@ -43,6 +43,12 @@
   color: #333;
 }
 
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .app__main {
   display: flex;
   flex-direction: column;
@@ -58,6 +64,43 @@
   color: #333;
 }
 
+.app__agent-toggle {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #6366f1;
+  border-radius: 8px;
+  background: #fff;
+  color: #6366f1;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.app__agent-toggle:hover {
+  background: #eef2ff;
+}
+
+.app__agent-toggle--active {
+  background: #6366f1;
+  color: #fff;
+}
+
+.app__agent-toggle--active:hover {
+  background: #4f46e5;
+}
+
+.app__agent-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app__agent-wrapper .app__header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
 .app-loading,
 .app-error {
   display: flex;
@@ -70,4 +113,94 @@
 
 .app-error {
   color: #b91c1c;
+}
+
+.api-key-dialog__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.api-key-dialog {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 420px;
+  max-width: 90vw;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.api-key-dialog__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.api-key-dialog__desc {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.api-key-dialog__input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: monospace;
+  box-sizing: border-box;
+}
+
+.api-key-dialog__input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+}
+
+.api-key-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.api-key-dialog__cancel {
+  padding: 8px 16px;
+  font-size: 13px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  color: #374151;
+  cursor: pointer;
+}
+
+.api-key-dialog__cancel:hover {
+  background: #f3f4f6;
+}
+
+.api-key-dialog__save {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background: #6366f1;
+  color: #fff;
+  cursor: pointer;
+}
+
+.api-key-dialog__save:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.api-key-dialog__save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
