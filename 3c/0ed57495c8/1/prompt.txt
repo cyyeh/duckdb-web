@@ -1,0 +1,120 @@
+Implement the following plan:
+
+# Agent Mode Implementation Plan
+
+## Context
+The DuckDB SQL Playground is a fully client-side React + TypeScript + Vite app with DuckDB WASM. We're adding an **Agent Mode** — a ChatGPT-like streaming chat panel that uses Claude (via Anthropic SDK) to answer questions and run SQL queries against loaded DuckDB tables. The chat panel appears side-by-side with the existing editor.
+
+## Architecture
+- **No backend server** — use Vite dev server proxy to forward `/api/anthropic` to `https://api.anthropic.com` (agent mode works in dev only; production would need a separate proxy)
+- **Anthropic SDK** with `dangerouslyAllowBrowser: true`, custom `baseURL: '/api/anthropic'` pointing at the Vite proxy
+- **Tool use loop**: Claude gets an `execute_sql` tool → client intercepts tool_use → runs SQL on in-browser DuckDB → sends tool_result back → loop until Claude responds with text
+- **API key** stored in localStorage, entered by user in the UI
+
+## New Dependencies
+- `@anthropic-ai/sdk` — for streaming API calls and TypeScript types
+
+## Files to Modify
+
+| File | Change |
+|------|--------|
+| `package.json` | Add `@anthropic-ai/sdk` |
+| `vite.config.ts` | Add `server.proxy` for `/api/anthropic` → `https://api.anthropic.com` |
+| `src/types.ts` | Add `ChatMessage`, `ToolCallInfo`, `ToolCallResult` types |
+| `src/main.tsx` | Wrap app with `AgentProvider` |
+| `src/App.tsx` | Add agent toggle button, render `AgentPanel`, pass `tables` and `refreshTables` to agent context |
+| `src/App.css` | Add 3-column grid variant (sidebar + editor + agent panel) |
+
+## New Files
+
+| File | Purpose |
+|------|---------|
+| `src/agent/tools.ts` | `execute_sql` tool schema for Claude |
+| `src/agent/systemPrompt.ts` | Builds system prompt with current table schemas |
+| `src/agent/agentService.ts` | Core streaming API call + tool use loop |
+| `src/AgentContext.tsx` | React context: messages, apiKey, sendMessage, streaming state |
+| `src/components/AgentPanel.tsx` + `.css` | Main chat panel container |
+| `src/components/APIKeyInput.tsx` + `.css` | API key entry form |
+| `src/components/MessageBubble.tsx` + `.css` | Single message renderer (markdown + inline tool results) |
+| `src/components/ChatInput.tsx` + `.css` | Message input textarea (Enter to send) |
+| `src/components/InlineQueryResult.tsx` + `.css` | Compact SQL result display within chat |
+
+## Implementation Order
+
+### Phase 1: Infrastructure
+1. `npm install @anthropic-ai/sdk`
+2. Update `vite.config.ts` — add proxy config
+3. Add new types to `src/types.ts`
+
+### Phase 2: Agent Core
+4. Create `src/agent/tools.ts` — tool schema
+5. Create `src/agent/systemPrompt.ts` — dynamic system prompt with table schemas
+6. Create `src/agent/agentService.ts` — streaming + tool loop using Anthropic SDK
+
+### Phase 3: State Management
+7. Create `src/AgentContext.tsx` — manages messages, API key (localStorage), wires agentService to DuckDB conn
+
+### Phase 4: UI Components
+8. Create `APIKeyInput` — password input + save button
+9. Create `ChatInput` — textarea, Enter sends, Shift+Enter newline
+10. Create `InlineQueryResult` — compact table for SQL results in chat
+11. Create `MessageBubble` — renders message with react-markdown + inline tool results
+12. Create `AgentPanel` — composes above components: API key input (if needed), message list, chat input
+
+### Phase 5: Integration
+13. Update `src/main.tsx` — wrap with `AgentProvider`
+14. Update `src/App.tsx` — add toggle button, render `AgentPanel`, pass tables/refreshTables
+15. Update `src/App.css` — 3-column layout: `grid-template-columns: 250px 1fr 1fr`
+
+## Key Design Details
+
+**Tool use loop** in agentService:
+1. Send messages to Claude with `execute_sql` tool available
+2. Stream response — on text chunks, update UI in real-time
+3. If Claude returns `tool_use`, execute SQL via DuckDB `conn.query()`, send result back, loop
+4. Truncate tool results to ~100 rows to save tokens
+
+**Streaming optimization**: Accumulate text in a ref, flush to state every ~50ms to avoid excessive re-renders.
+
+**System prompt**: Includes all loaded table schemas (name, columns with types, row counts) so Claude can write accurate SQL.
+
+## Verification
+1. Run `npm run dev`
+2. Load a CSV file (e.g., titanic sample)
+3. Toggle agent panel open
+4. Enter API key
+5. Ask a question like "What is the average age by passenger class?"
+6. Verify: Claude calls execute_sql, result appears inline, Claude summarizes the data
+7. Verify streaming works (text appears progressively)
+8. Verify editor mode still works independently alongside agent mode
+
+
+If you need specific details from before exiting plan mode (like exact code snippets, error messages, or content you generated), read the full transcript at: /home/cyyeh/.REDACTED.jsonl
+
+---
+
+only can show agent mode or editor mode one at a time
+
+---
+
+user needs to put claude api key first in order to use agent mode
+
+---
+
+is it secure to save plain api key in local storage?
+
+---
+
+for sessionStorage, is it secure?
+
+---
+
+I would lik production level security for saving api key
+
+---
+
+yes, switch to memory only
+
+---
+
+fix this bug: Error: Failed to construct 'URL': Invalid URL
