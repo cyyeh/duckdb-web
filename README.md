@@ -57,4 +57,4 @@ The project includes a GitHub Actions workflow that automatically deploys to Git
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE.txt)
