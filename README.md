@@ -1,5 +1,7 @@
 # DuckDB SQL Playground
 
+> **Note:** This project is built with Claude Code(using Opus 4.6) by more than 95% and human-reviewed by author.
+
 A browser-based SQL playground powered by [DuckDB-WASM](https://github.com/duckdb/duckdb-wasm). Upload CSV files and query them with SQL — everything runs entirely in your browser with no server required.
 
 **Live site:** https://cyyeh.github.io/duckdb-web/
