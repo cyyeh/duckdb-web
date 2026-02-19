@@ -1,0 +1,41 @@
+.results-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.results-table__summary {
+  font-size: 13px;
+  color: #666;
+}
+
+.results-table__scroll {
+  overflow-x: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.results-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.results-table__table th,
+.results-table__table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+.results-table__table th {
+  background: #f5f5f5;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.results-table__table tbody tr:hover {
+  background: #f9f9f9;
+}

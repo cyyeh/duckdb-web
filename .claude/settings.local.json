@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.npmjs.com)",
+      "WebSearch",
+      "WebFetch(domain:duckdb.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:shell.duckdb.org)",
+      "Bash(bun --version:*)",
+      "WebFetch(domain:bufferings.github.io)",
+      "Bash(python3 -c \"import sys,json,base64; d=json.load\\(sys.stdin\\); print\\(base64.b64decode\\(d[''content'']\\).decode\\(\\)\\)\")",
+      "Bash(gh api:*)",
+      "Bash(bun create:*)",
+      "Bash(npm create:*)",
+      "Bash(node --version:*)",
+      "Bash(npm:*)",
+      "Bash(npx create-vite@5:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vite build:*)",
+      "Bash(timeout 10 npx vite:*)"
+    ]
+  }
+}
