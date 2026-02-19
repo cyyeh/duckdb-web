@@ -1,0 +1,13 @@
+use claude agent sdk v1 instead: https://platform.claude.com/docs/en/agent-sdk/typescript
+
+---
+
+[Request interrupted by user for tool use]
+
+---
+
+use claude agent sdk v1 instead: https://platform.claude.com/docs/en/agent-sdk/typescript
+
+---
+
+[Request interrupted by user]
