@@ -1,0 +1,43 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "9df3569d5592",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    ".env.example",
+    ".gitignore",
+    "package-lock.json",
+    "package.json",
+    "src/AgentContext.tsx",
+    "src/App.css",
+    "src/App.tsx",
+    "src/agent/agentService.ts",
+    "src/agent/systemPrompt.ts",
+    "src/agent/tools.ts",
+    "src/components/AgentPanel.css",
+    "src/components/AgentPanel.tsx",
+    "src/components/ChatInput.css",
+    "src/components/ChatInput.tsx",
+    "src/components/InlineQueryResult.css",
+    "src/components/InlineQueryResult.tsx",
+    "src/types.ts",
+    "vite.config.ts"
+  ],
+  "sessions": [
+    {
+      "metadata": "/9d/f3569d5592/0/metadata.json",
+      "transcript": "/9d/f3569d5592/0/full.jsonl",
+      "context": "/9d/f3569d5592/0/context.md",
+      "content_hash": "/9d/f3569d5592/0/content_hash.txt",
+      "prompt": "/9d/f3569d5592/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 8,
+    "cache_creation_tokens": 10305,
+    "cache_read_tokens": 142989,
+    "output_tokens": 86,
+    "api_call_count": 6
+  }
+}
