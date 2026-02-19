@@ -58,6 +58,24 @@ export default function App() {
     }
   }, [conn]);
 
+  const handleLoadSample = useCallback(async () => {
+    if (!db || !conn) return;
+    setError(null);
+    try {
+      const response = await fetch(`${import.meta.env.BASE_URL}titanic.csv`);
+      if (!response.ok) throw new Error('Failed to fetch sample dataset');
+      const buffer = await response.arrayBuffer();
+      await db.registerFileBuffer('titanic.csv', new Uint8Array(buffer));
+      await conn.query(
+        `CREATE OR REPLACE TABLE "titanic" AS SELECT * FROM read_csv_auto('titanic.csv')`
+      );
+      await refreshTables();
+      setEditorQuery(`SELECT * FROM "titanic" LIMIT 100`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to load sample dataset');
+    }
+  }, [db, conn, refreshTables]);
+
   const handleFileUpload = useCallback(
     async (file: File) => {
       if (!db || !conn) return;
@@ -135,7 +153,7 @@ export default function App() {
       </div>
       <main className="app__main">
         <h1 className="app__title">DuckDB SQL Playground</h1>
-        <FileUpload onUpload={handleFileUpload} />
+        <FileUpload onUpload={handleFileUpload} onLoadSample={handleLoadSample} />
         <QueryEditor
           onExecute={handleQueryExecute}
           initialQuery={editorQuery}
