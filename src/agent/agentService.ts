@@ -28,7 +28,6 @@ export async function runAgentLoop(
 ) {
   const client = new Anthropic({
     apiKey,
-    baseURL: `${window.location.origin}/api/anthropic`,
     dangerouslyAllowBrowser: true,
   });
 

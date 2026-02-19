@@ -11,13 +11,4 @@ export default defineConfig({
   build: {
     target: 'esnext',
   },
-  server: {
-    proxy: {
-      '/api/anthropic': {
-        target: 'https://api.anthropic.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/anthropic/, ''),
-      },
-    },
-  },
 })
