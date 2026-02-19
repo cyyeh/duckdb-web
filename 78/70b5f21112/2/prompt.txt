@@ -1,0 +1,5 @@
+update readme to specifically state that in order to use agent mode, user needs to fill in anthropic api key, and it's stored in memory only
+
+---
+
+commit this
