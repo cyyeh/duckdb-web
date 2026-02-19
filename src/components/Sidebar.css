@@ -3,6 +3,14 @@
   border-right: 1px solid #ddd;
   padding: 16px;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar--collapsed {
+  padding: 0;
+  border-right: none;
+  visibility: hidden;
+  width: 0;
 }
 
 .sidebar__title {

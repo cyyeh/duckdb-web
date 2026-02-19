@@ -25,6 +25,7 @@ export default function App() {
   const [queryResult, setQueryResult] = useState<QueryResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [editorQuery, setEditorQuery] = useState<string | undefined>(undefined);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const refreshTables = useCallback(async () => {
     if (!conn) return;
@@ -121,8 +122,17 @@ export default function App() {
   }
 
   return (
-    <div className="app">
-      <Sidebar tables={tables} onTableClick={handleTableClick} />
+    <div className={`app ${sidebarCollapsed ? 'app--sidebar-collapsed' : ''}`}>
+      <div className="app__sidebar-wrapper">
+        <Sidebar tables={tables} onTableClick={handleTableClick} collapsed={sidebarCollapsed} />
+        <button
+          className="app__sidebar-toggle"
+          onClick={() => setSidebarCollapsed((prev) => !prev)}
+          aria-label={sidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {sidebarCollapsed ? '\u25B6' : '\u25C0'}
+        </button>
+      </div>
       <main className="app__main">
         <h1 className="app__title">DuckDB SQL Playground</h1>
         <FileUpload onUpload={handleFileUpload} />

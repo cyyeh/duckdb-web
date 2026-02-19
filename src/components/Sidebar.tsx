@@ -5,9 +5,10 @@ import './Sidebar.css';
 interface SidebarProps {
   tables: TableInfo[];
   onTableClick: (tableName: string) => void;
+  collapsed: boolean;
 }
 
-export function Sidebar({ tables, onTableClick }: SidebarProps) {
+export function Sidebar({ tables, onTableClick, collapsed }: SidebarProps) {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   const toggle = (name: string) => {
@@ -15,7 +16,7 @@ export function Sidebar({ tables, onTableClick }: SidebarProps) {
   };
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${collapsed ? 'sidebar--collapsed' : ''}`}>
       <h3 className="sidebar__title">Tables</h3>
       {tables.length === 0 && (
         <p className="sidebar__empty">No tables yet. Upload a CSV to get started.</p>
