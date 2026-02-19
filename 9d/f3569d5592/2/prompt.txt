@@ -1,0 +1,5 @@
+in agent mode ui, always separate thinking steps with final answer text
+
+---
+
+no I mean the agent mode ui in current web project, not claude code itself
