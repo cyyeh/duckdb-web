@@ -14,4 +14,5 @@ export interface QueryResult {
   rows: Record<string, unknown>[];
   rowCount: number;
   executionTimeMs: number;
+  resultType: 'table' | 'markdown';
 }

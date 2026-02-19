@@ -3,6 +3,7 @@ import { useDuckDB } from './useDuckDB';
 import { FileUpload } from './components/FileUpload';
 import { QueryEditor } from './components/QueryEditor';
 import { ResultsTable } from './components/ResultsTable';
+import { ResultMarkdown } from './components/ResultMarkdown';
 import { Sidebar } from './components/Sidebar';
 import { ErrorMessage } from './components/ErrorMessage';
 import type { TableInfo, QueryResult } from './types';
@@ -108,12 +109,14 @@ export default function App() {
 
         const rows = result.toArray().map((row) => row.toJSON());
         const columns = result.schema.fields.map((f) => f.name);
+        const isExplain = sql.trim().match(/^EXPLAIN\b/i) !== null;
 
         setQueryResult({
           columns,
           rows,
           rowCount: rows.length,
           executionTimeMs: elapsed,
+          resultType: isExplain ? 'markdown' : 'table',
         });
 
         // Refresh tables in case of DDL statements
@@ -161,7 +164,11 @@ export default function App() {
         {error && (
           <ErrorMessage message={error} onDismiss={() => setError(null)} />
         )}
-        <ResultsTable result={queryResult} />
+        {queryResult?.resultType === 'markdown' ? (
+          <ResultMarkdown result={queryResult} />
+        ) : (
+          <ResultsTable result={queryResult} />
+        )}
       </main>
     </div>
   );
