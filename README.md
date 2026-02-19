@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# DuckDB SQL Playground
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A browser-based SQL playground powered by [DuckDB-WASM](https://github.com/duckdb/duckdb-wasm). Upload CSV files and query them with SQL — everything runs entirely in your browser.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **In-browser SQL engine** — DuckDB compiled to WebAssembly, no server required
+- **CSV file upload** — Drag-and-drop or click to import CSV files (up to 500 MB)
+- **SQL query editor** — Write and execute queries with Ctrl+Enter
+- **Results table** — View query results with column names, row counts, and execution time
+- **Table sidebar** — Browse uploaded tables, inspect columns and types
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Open http://localhost:5173 to use the playground.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Build
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run build
+npm run preview
 ```
+
+## Deployment
+
+The project includes a GitHub Actions workflow that automatically deploys to GitHub Pages on push to `main`.
+
+Live site: https://cyyeh.github.io/duckdb-web/
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite
+- DuckDB-WASM
+- Apache Arrow
