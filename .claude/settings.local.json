@@ -17,7 +17,10 @@
       "Bash(npx create-vite@5:*)",
       "Bash(npx tsc:*)",
       "Bash(npx vite build:*)",
-      "Bash(timeout 10 npx vite:*)"
+      "Bash(timeout 10 npx vite:*)",
+      "Bash(git -C /home/cyyeh/repos/ts-projects/duckdb-web log --oneline -10)",
+      "Bash(git -C /home/cyyeh/repos/ts-projects/duckdb-web add src/App.tsx src/components/FileUpload.tsx src/components/FileUpload.css public/titanic.csv)",
+      "Bash(git -C:*)"
     ]
   }
 }
