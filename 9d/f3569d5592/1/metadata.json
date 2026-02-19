@@ -1,0 +1,32 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "9df3569d5592",
+  "session_id": "09bf6b16-573b-4363-8714-0516d5942779",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T06:33:08.059780556Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "src/App.tsx",
+    "src/types.ts"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "286845abf765",
+  "token_usage": {
+    "input_tokens": 20,
+    "cache_creation_tokens": 17489,
+    "cache_read_tokens": 461270,
+    "output_tokens": 399,
+    "api_call_count": 16
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T06:33:08.039417362Z",
+    "agent_lines": 177,
+    "human_added": 937,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 1114,
+    "agent_percentage": 15.888689407540395
+  },
+  "transcript_path": ".claude/projects/-home-cyyeh-repos-ts-projects-duckdb-web/09bf6b16-573b-4363-8714-0516d5942779.jsonl"
+}
