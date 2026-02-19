@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.4.5",
+  "checkpoint_id": "3c0ed57495c8",
+  "session_id": "abe05606-eecf-447b-b28c-f99da01110e9",
+  "strategy": "manual-commit",
+  "created_at": "2026-02-19T06:40:57.955339114Z",
+  "branch": "main",
+  "checkpoints_count": 3,
+  "files_touched": [
+    "src/agent/agentService.ts",
+    "vite.config.ts"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "606c9b0aee62",
+  "transcript_identifier_at_start": "e1e7a849-f5b1-4ec3-8dc4-72d1ea6358e0",
+  "token_usage": {
+    "input_tokens": 14,
+    "cache_creation_tokens": 6668,
+    "cache_read_tokens": 169407,
+    "output_tokens": 136,
+    "api_call_count": 8
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-02-19T06:40:57.950387472Z",
+    "agent_lines": 0,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 0,
+    "agent_percentage": 0
+  },
+  "transcript_path": ".claude/projects/-home-cyyeh-repos-ts-projects-duckdb-web/abe05606-eecf-447b-b28c-f99da01110e9.jsonl"
+}
